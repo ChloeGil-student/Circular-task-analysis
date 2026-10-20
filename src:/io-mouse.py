@@ -49,3 +49,14 @@ def read_markers(path):
             markers.append((int(parts[1]), parts[2]))
     return markers, table
 
+
+def get_records(markers):
+    """List of (t_start_ms, t_end_ms): each DoRecord marker up to the next DoPause marker."""
+    records, start = [], None
+    for t, text in markers:
+        if "DoRecord" in text and "DoStart" not in text:
+            start = t
+        elif "DoPause" in text and start is not None:
+            records.append((start, t))
+            start = None
+    return records

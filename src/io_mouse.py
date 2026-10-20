@@ -16,12 +16,12 @@ def read_header(path):
     return header
 
 def read_data(path, header=None):
-    """Return dict with t (s, from first sample), t_ms, x, y (centered on the task center, y up), inside (bool).
+    """Return dict with t_ms (timestamps, ms), x, y (centered on the task center, y up), inside (bool).
     Raw columns: timestamp, mouseX, mouseY, mouseInTarget (screen pixels, y down)."""
     if header is None:
         header = read_header(path)
     raw = np.genfromtxt(path, delimiter=",", skip_header=4)  # lines 1-3 = header/date/blank, line 4 = column names
-    raw = raw[raw[:, 0] > 0]  # the file ends with a junk line "0,0,0,0"
+    raw = raw[raw[:, 0] > 0]  # drop the "0,0,0,0" lines (one at the end of each record)
     t_ms = raw[:, 0].astype(np.int64)
     return {
         "t_ms": t_ms,

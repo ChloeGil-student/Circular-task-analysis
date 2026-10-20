@@ -1,30 +1,115 @@
-# A minimal template for data analysis with python 
+<div align="center">
 
-This is a minimal template for data analysis with python, intended to researchers in human movement sciences that are new to python.   
-Cloning this template for each new data analysis problem should facilitate data analyses with python and minimize potential errors.   
+# 🎯 Circular Steering Task — MouseReMoCo analysis
 
-## Usage
-1. Download as a zip file (green button `< > Code` on the top right of the page)
-1. Expand the archive on your computer (e.g., in your `Download` folder). 
-1. Rename the extracted folder with the name of your new project (e.g., `ECG_analysis`)
-1. Move the new `ECG_analysis` folder where it should be located (e.g., in your `Documents/CodeProjects/` directory)
-1. In VSCode :
-    1. open the new project in a new window. 
-    1. open `main.ipynb` and click `Run all`
+**Reproducing the figures and the performance table of a circular steering task, from raw mouse data**
 
-## Notebook template
-The `template.ipynb` notebook contains a minimal template for data analysis with python. It includes the following sections:
-- **Header:**
-  - The first cell will add a header to the notebook with the project title, author, date. 
-  - You should edit this cell to add your information.
-- **Data Analysis Cells:**
-  - The cells you will use for data analysis (e.g., loading data, preprocessing, modeling, etc.) go here.
-- **Export Cell:**
-  - The last cell will save the notebook as a HTML file next to the notebook file and open it in your web browser. 
-  - The HTML will include all the graphics, and will not show the cell numbers. 
-  - Cells tagged with `hide` will not be shown in the HTML file. 
-    - You can add the `hide` tag to any cell you do not want to appear in the HTML file (e.g., in VSCode, click on  `...` in the icon box in the top left of the cell)
+![Python](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white)
 
-## Requirements
-- [A minimal Python environment for reproducible research in human movement sciences](https://github.com/DenisMot/Python-minimal-install) is my preferred solution.
-- Any IDE supporting python and jupyter notebooks is an alternative solution. 
+*Master IEAP — Python-R-Git course*
+
+</div>
+
+---
+
+## 📌 Overview
+
+This project analyses recordings of the **circular steering task** described in
+[Fauviaux et al. (2021)](https://hal.science/hal-03834500), recorded with
+[MouseReMoCo](https://github.com/DenisMot/MouseReMoCo).
+
+| # | Goal | Where |
+|:-:|---|---|
+| 1 | Reproduce the expected figures for the provided recording `001MoDe_R1` | `02_figures` |
+| 2 | Re-compute the summary table written by MouseReMoCo at the end of the marker file | `03_analysis` |
+| 3 | Run the same code on our own recording (right hand vs left hand) | `04_own_data` |
+
+> **The task** — the participant moves a cursor along a circular track as fast as possible while staying inside it.
+> A recording alternates **Record** phases (20 s, analysed) and **Pause** phases (20 s).
+
+---
+
+## 👥 Who did what
+
+| Member | Role | Contributions |
+|---|---|---|
+| **[Chloé GILLES]** | 🧭 Project manager | Repository setup · reading functions (`src/io_mouse.py`) · `01_load` · `03_analysis` · own recording (participant) · reviews and merges of the pull requests |
+| **[Martin PIGEAU]** | 📊 Figures & own data | Plotting functions (`src/plots.py`) · `02_figures` · `04_own_data` · reviews of the pull requests |
+
+### 🌿 Git workflow
+
+Each branch was merged into `main` through a **pull request**, reviewed by the other member and merged by the project manager.
+We never worked on the same file at the same time, to avoid merge conflicts.
+
+---
+
+## 🗂️ Repository structure
+
+```
+📦 Circular-task-analysis
+├── 📁 data
+│   ├── 001MoDe_R1.csv           ← provided recording: cursor position over time
+│   ├── 001MoDe_R1.marker.csv    ← provided recording: events + MouseReMoCo summary table
+│   ├── own_data.csv             ← our recording (6 records: 3 right hand, 3 left hand)
+│   └── own_marker.csv           ← markers of our recording
+├── 📁 notebooks
+│   ├── 01_load.ipynb            ← read the header, samples, markers and record windows
+│   ├── 02_figures.ipynb         ← expected figures for 001MoDe_R1
+│   ├── 03_analysis.ipynb        ← step-by-step re-computation of the summary table
+│   └── 04_own_data.ipynb        ← same analysis on our recording + right vs left hand
+├── 📁 src
+│   ├── io_mouse.py              ← functions to read MouseReMoCo files
+│   └── plots.py                 ← plotting functions
+└── 📄 readme.md
+```
+
+---
+
+## 🚀 How to run
+
+1. Clone the repository and open its folder in **VS Code**.
+2. Open `main.ipynb` and click **Run All**: it runs the 4 notebooks in order (`01` → `04`).
+   Each notebook can also be run on its own.
+
+**Requirements**: Python 3 with Jupyter (we used VS Code and the [minimal Python environment](https://github.com/DenisMot/Python-minimal-install) of the course).
+
+| Package | Used for |
+|---|---|
+| `numpy` | reading the files and computing the statistics |
+| `matplotlib` | figures (`pyplot`, `Rectangle`, `Circle`) |
+| `ipympl` | interactive figures (`%matplotlib widget`) |
+| `os` | paths (Python standard library) |
+
+As asked in the assignment, no other library is used. Our own functions are in `src/` and are imported by the notebooks.
+
+---
+
+## 📈 Results
+
+**✅ `001MoDe_R1`** — the figures match the expected ones, and the re-computed table matches MouseReMoCo's
+for the 5 records (largest difference 0.012, the reference being rounded to 2 decimals).
+
+**✅ Own recording** — one right-handed participant, MouseReMoCo 1.3.0, MacBook Air trackpad.
+Our values match MouseReMoCo's table for the 6 records (largest difference 0.005).
+
+| Hand | IPe (bit/s) | error (%) | Be | MT/lap (s) |
+|---|:-:|:-:|:-:|:-:|
+| ✋ Right (dominant) | **9.89** | **2.46** | 0.92 | 4.61 |
+| 🤚 Left (non-dominant) | 4.90 | 14.57 | 1.43 | 6.06 |
+
+With the non-dominant hand, `IPe` is about **half** and the error about **6 times higher**,
+in the same direction as Fauviaux et al. (2021).
+
+> ⚠️ **Limits** — one participant · hands tested in blocks (right then left) · different screen, target size
+> and pointing device than the provided recording.
+
+---
+
+## 📚 References
+
+- Fauviaux et al. (2021) — https://hal.science/hal-03834500
+- MouseReMoCo — https://github.com/DenisMot/MouseReMoCo
+- Python-for-HMS-Template — https://github.com/DenisMot/Python-for-HMS-Template

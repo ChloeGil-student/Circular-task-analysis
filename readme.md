@@ -36,8 +36,8 @@ This project analyses recordings of the **circular steering task** described in
 
 | Member | Role | Contributions |
 |---|---|---|
-| **[Chloé GILLES]** | 🧭 Project manager | Repository setup · reading functions (`src/io_mouse.py`) · `01_load` · `03_analysis` · own recording (participant) · reviews and merges of the pull requests |
-| **[Martin PIGEAU]** | 📊 Figures & own data | Plotting functions (`src/plots.py`) · `02_figures` · `04_own_data` · reviews of the pull requests |
+| **Chloé GILLES** | 🧭 Project manager | Repository setup · reading functions (`src/io_mouse.py`) · `01_load` · `03_analysis` · own recording (participant) · reviews and merges of the pull requests |
+| **Martin PIGEAU** | 📊 Figures & own data | Plotting functions (`src/plots.py`) · `02_figures` · `04_own_data` · reviews of the pull requests |
 
 ### 🌿 Git workflow
 
@@ -50,20 +50,26 @@ We never worked on the same file at the same time, to avoid merge conflicts.
 
 ```
 📦 Circular-task-analysis
+├── 📄 main.ipynb                ← runs the 4 notebooks in order (01 → 04)
+├── 📄 readme.md                 ← this file
+├── 📄 LICENSE                   ← GPL-3.0 licence (from the course template)
+├── ⚙️ .gitignore                ← files ignored by Git (e.g. __pycache__)
+├── ⚙️ .gitattributes            ← line-ending settings for Git
+├── 📁 .vscode
+│   └── settings.json            ← VS Code settings
 ├── 📁 data
 │   ├── 001MoDe_R1.csv           ← provided recording: cursor position over time
 │   ├── 001MoDe_R1.marker.csv    ← provided recording: events + MouseReMoCo summary table
-│   ├── own_data.csv             ← our recording (6 records: 3 right hand, 3 left hand)
-│   └── own_marker.csv           ← markers of our recording
+│   ├── own_data.csv             ← our recording: cursor position over time (6 records)
+│   └── own_marker.csv           ← our recording: events + MouseReMoCo summary table
 ├── 📁 notebooks
 │   ├── 01_load.ipynb            ← read the header, samples, markers and record windows
 │   ├── 02_figures.ipynb         ← expected figures for 001MoDe_R1
 │   ├── 03_analysis.ipynb        ← step-by-step re-computation of the summary table
 │   └── 04_own_data.ipynb        ← same analysis on our recording + right vs left hand
-├── 📁 src
-│   ├── io_mouse.py              ← functions to read MouseReMoCo files
-│   └── plots.py                 ← plotting functions
-└── 📄 readme.md
+└── 📁 src
+    ├── io_mouse.py              ← functions to read MouseReMoCo files
+    └── plots.py                 ← plotting functions
 ```
 
 ---

@@ -1,23 +1,18 @@
 <div align="center">
 
-# 🎯 Circular Steering Task — MouseReMoCo analysis
+# Circular Steering Task : MouseReMoCo analysis
 
 **Reproducing the figures and the performance table of a circular steering task, from raw mouse data**
 
-![Python](https://img.shields.io/badge/Python-3-3776AB?logo=python&logoColor=white)
-![NumPy](https://img.shields.io/badge/NumPy-013243?logo=numpy&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?logo=jupyter&logoColor=white)
-
-*Master IEAP — Python-R-Git course*
+*Master IEAP, Python-R-Git course*
 
 </div>
 
 ---
 
-## 📌 Overview
+## Overview
 
-This project analyses recordings of the **circular steering task** described in
+This project analyses recordings of the circular steering task described in
 [Fauviaux et al. (2021)](https://hal.science/hal-03834500), recorded with
 [MouseReMoCo](https://github.com/DenisMot/MouseReMoCo).
 
@@ -27,54 +22,54 @@ This project analyses recordings of the **circular steering task** described in
 | 2 | Re-compute the summary table written by MouseReMoCo at the end of the marker file | `03_analysis` |
 | 3 | Run the same code on our own recording (right hand vs left hand) | `04_own_data` |
 
-> **The task** — the participant moves a cursor along a circular track as fast as possible while staying inside it.
+> **The task** : the participant moves a cursor along a circular track as fast as possible while staying inside it.
 > A recording alternates **Record** phases (20 s, analysed) and **Pause** phases (20 s).
 
 ---
 
-## 👥 Who did what
+## Who did what
 
 | Member | Role | Contributions |
 |---|---|---|
-| **Chloé GILLES** | 🧭 Project manager | Repository setup · reading functions (`src/io_mouse.py`) · `01_load` · `03_analysis` · own recording (participant) · reviews and merges of the pull requests |
-| **Martin PIGEAU** | 📊 Figures & own data | Plotting functions (`src/plots.py`) · `02_figures` · `04_own_data` · reviews of the pull requests |
+| **Chloé GILLES** | Project manager | Repository setup, reading functions (`src/io_mouse.py`), `01_load`, `03_analysis`, own recording (participant), reviews and merges of the pull requests |
+| **Martin PIGEAU** | Figures & own data | Plotting functions (`src/plots.py`), `02_figures`, `04_own_data`, `main.ipynb`, README, reviews of the pull requests |
 
-### 🌿 Git workflow
+### Git workflow
 
 Each branch was merged into `main` through a **pull request**, reviewed by the other member and merged by the project manager.
 We never worked on the same file at the same time, to avoid merge conflicts.
 
 ---
 
-## 🗂️ Repository structure
+## Repository structure
 
 ```
-📦 Circular-task-analysis
-├── 📄 main.ipynb                ← runs the 4 notebooks in order (01 → 04)
-├── 📄 readme.md                 ← this file
-├── 📄 LICENSE                   ← GPL-3.0 licence (from the course template)
-├── ⚙️ .gitignore                ← files ignored by Git (e.g. __pycache__)
-├── ⚙️ .gitattributes            ← line-ending settings for Git
-├── 📁 .vscode
-│   └── settings.json            ← VS Code settings
-├── 📁 data
-│   ├── 001MoDe_R1.csv           ← provided recording: cursor position over time
-│   ├── 001MoDe_R1.marker.csv    ← provided recording: events + MouseReMoCo summary table
-│   ├── own_data.csv             ← our recording: cursor position over time (6 records)
-│   └── own_marker.csv           ← our recording: events + MouseReMoCo summary table
-├── 📁 notebooks
-│   ├── 01_load.ipynb            ← read the header, samples, markers and record windows
-│   ├── 02_figures.ipynb         ← expected figures for 001MoDe_R1
-│   ├── 03_analysis.ipynb        ← step-by-step re-computation of the summary table
-│   └── 04_own_data.ipynb        ← same analysis on our recording + right vs left hand
-└── 📁 src
-    ├── io_mouse.py              ← functions to read MouseReMoCo files
-    └── plots.py                 ← plotting functions
+Circular-task-analysis
+├── main.ipynb                 ← runs the 4 notebooks in order (01 → 04)
+├── readme.md                  ← this file
+├── LICENSE                    ← GPL-3.0 licence (from the course template)
+├── .gitignore                 ← files ignored by Git (e.g. __pycache__)
+├── .gitattributes             ← line-ending settings for Git
+├── .vscode
+│   └── settings.json          ← VS Code settings
+├── data
+│   ├── 001MoDe_R1.csv         ← provided recording: cursor position over time
+│   ├── 001MoDe_R1.marker.csv  ← provided recording: events + MouseReMoCo summary table
+│   ├── own_data.csv           ← our recording: cursor position over time (6 records)
+│   └── own_marker.csv         ← our recording: events + MouseReMoCo summary table
+├── notebooks
+│   ├── 01_load.ipynb          ← read the header, samples, markers and record windows
+│   ├── 02_figures.ipynb       ← expected figures for 001MoDe_R1
+│   ├── 03_analysis.ipynb      ← step-by-step re-computation of the summary table
+│   └── 04_own_data.ipynb      ← same analysis on our recording + right vs left hand
+└── src
+    ├── io_mouse.py            ← functions to read MouseReMoCo files
+    └── plots.py               ← plotting functions
 ```
 
 ---
 
-## 🚀 How to run
+## How to run
 
 1. Clone the repository and open its folder in **VS Code**.
 2. Open `main.ipynb` and click **Run All**: it runs the 4 notebooks in order (`01` → `04`).
@@ -93,28 +88,28 @@ As asked in the assignment, no other library is used. Our own functions are in `
 
 ---
 
-## 📈 Results
+## Results
 
-**✅ `001MoDe_R1`** — the figures match the expected ones, and the re-computed table matches MouseReMoCo's
+**`001MoDe_R1`** : the figures match the expected ones, and the re-computed table matches MouseReMoCo's
 for the 5 records (largest difference 0.012, the reference being rounded to 2 decimals).
 
-**✅ Own recording** — one right-handed participant, MouseReMoCo 1.3.0, MacBook Air trackpad.
+**Own recording** : one right-handed participant, MouseReMoCo 1.3.0, MacBook Air trackpad.
 Our values match MouseReMoCo's table for the 6 records (largest difference 0.005).
 
 | Hand | IPe (bit/s) | error (%) | Be | MT/lap (s) |
 |---|:-:|:-:|:-:|:-:|
-| ✋ Right (dominant) | **9.89** | **2.46** | 0.92 | 4.61 |
-| 🤚 Left (non-dominant) | 4.90 | 14.57 | 1.43 | 6.06 |
+| Right (dominant) | **9.89** | **2.46** | 0.92 | 4.61 |
+| Left (non-dominant) | 4.90 | 14.57 | 1.43 | 6.06 |
 
 With the non-dominant hand, `IPe` is about **half** and the error about **6 times higher**,
 in the same direction as Fauviaux et al. (2021).
 
-> ⚠️ **Limits** — one participant · hands tested in blocks (right then left) · different screen, target size
+> **Limits** : one participant, hands tested in blocks (right then left), different screen, target size
 > and pointing device than the provided recording.
 
 ---
 
-## 📚 References
+## References
 
 - Fauviaux et al. (2021) — https://hal.science/hal-03834500
 - MouseReMoCo — https://github.com/DenisMot/MouseReMoCo

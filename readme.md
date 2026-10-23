@@ -43,6 +43,7 @@ We never worked on the same file at the same time, to avoid merge conflicts.
 
 ## Repository structure
 
+```
 Circular-task-analysis
 ├── main.ipynb                 ← runs the 4 notebooks in order (01 → 04)
 ├── readme.md                  ← this file
@@ -64,6 +65,7 @@ Circular-task-analysis
 └── src
     ├── io_mouse.py            ← functions to read MouseReMoCo files
     └── plots.py               ← plotting functions
+```
 
 ---
 
